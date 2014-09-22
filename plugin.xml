@@ -6,10 +6,10 @@
         <lang name="russian">Blogusers - добавление пользователей в блог</lang>
     </name>
     <author>
-        <lang name="default">author</lang>
-        <lang name="russian">автор</lang>
+        <lang name="default">Klaus</lang>
+        <lang name="russian">Klaus</lang>
     </author>
-    <homepage>http://livestreet.ru</homepage>
+    <homepage>http://altocms.com</homepage>
     <version>1.0.0</version>
     <dirname>blogusers</dirname>
     <requires>
