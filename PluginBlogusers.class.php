@@ -18,14 +18,13 @@ class PluginBlogusers extends Plugin {
 
     // Объявление делегирований (нужны для того, чтобы назначить свои экшны и шаблоны)
     public $aDelegates = array(
-            'action' => array('ActionBlog'=>'_ActionBlog'),
-			'template'=>array('widgets/widget.add_to_blog.tpl'=>'_widgets/widget.add_to_blog.tpl'),
+	'template'=>array('widgets/widget.add_to_blog.tpl'=>'_widgets/widget.add_to_blog.tpl'),
 
     );
 
     // Объявление переопределений (модули, мапперы и сущности)
     protected $aInherits=array(
-     
+        'action' => array('ActionBlog'=>'_ActionBlog'),
     );
 
     // Активация плагина
