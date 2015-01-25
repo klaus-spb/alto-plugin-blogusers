@@ -19,7 +19,7 @@
                     </select>
                 </div>
 				<div class="input-group">
-                    <input type="text" id="blog_admin_user_add" name="users" class="form-control autocomplete-users-sep"/>
+                    <input type="text" id="blogusers_user_add" name="users" class="form-control autocomplete-users-sep"/>
                         <span class="input-group-btn">
                             <button class="btn btn-default" name="submit_user_add" >{$aLang.plugin.blogusers.add}</button>
                         </span>
