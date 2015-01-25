@@ -69,17 +69,17 @@ class PluginBlogusers_ActionBlog extends PluginBlogusers_Inherit_ActionBlog {
 							$oBlogUserNew->setUserRole(ModuleBlog::BLOG_USER_ROLE_GUEST);
 					}
 				
-					$bResult = $this->Blog_AddRelationBlogUser($oBlogUserNew);
-				}
-				if ($bResult) {
-					$oBlog->setCountUser($oBlog->getCountUser() + 1);
-					$this->Blog_UpdateBlog($oBlog);
+					if ( $bResult = $this->Blog_AddRelationBlogUser($oBlogUserNew) ) {
+						$oBlog->setCountUser($oBlog->getCountUser() + 1);
+						$this->Blog_UpdateBlog($oBlog);
+						
+						$this->Stream_Write($oUser->getId(), 'join_blog', $oBlog->getId());
+						
+						$this->Userfeed_SubscribeUser(
+							$oUser->getId(), ModuleUserfeed::SUBSCRIBE_TYPE_BLOG, $oBlog->getId()
+						);	
+					}
 					
-					$this->Stream_Write($oUser->getId(), 'join_blog', $oBlog->getId());
-					
-					$this->Userfeed_SubscribeUser(
-						$oUser->getId(), ModuleUserfeed::SUBSCRIBE_TYPE_BLOG, $oBlog->getId()
-					);	
 				}
 				
 			}
