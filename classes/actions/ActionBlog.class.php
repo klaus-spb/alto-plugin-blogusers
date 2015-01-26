@@ -17,15 +17,32 @@ class PluginBlogusers_ActionBlog extends PluginBlogusers_Inherit_ActionBlog {
 	protected function EventAdminBlog() {
 		parent::EventAdminBlog();
 		
+		/**
+	         * Проверяем передан ли в УРЛе номер блога
+	         */
+	        $sBlogId = $this->GetParam(0);
+	        if (!$oBlog = $this->Blog_GetBlogById($sBlogId)) {
+	            return parent::EventNotFound();
+	        }
+	        /**
+	         * Проверям авторизован ли пользователь
+	         */
+	        if (!$this->User_IsAuthorization()) {
+	            $this->Message_AddErrorSingle($this->Lang_Get('not_access'), $this->Lang_Get('error'));
+	            return Router::Action('error');
+	        }
+	        /**
+	         * Проверка на право управлением пользователями блога
+	         */
+	        if (!$this->ACL_IsAllowAdminBlog($oBlog, $this->oUserCurrent)) {
+	            $this->Message_AddErrorSingle($this->Lang_Get('not_access'), $this->Lang_Get('not_access'));
+	            return Router::Action('error');
+	        }
+	        
 		$this->Viewer_AddWidget('right', '/widgets/widget.add_to_blog.tpl');
 		
 		
 		if (F::isPost('submit_user_add')) {
-			
-			$sBlogId = $this->GetParam(0);
-			if (!$oBlog = $this->Blog_GetBlogById($sBlogId)) {
-				return parent::EventNotFound();
-			}		
 			
 			$sUsers = F::GetRequest('users', null, 'post');
 			$sStatus = F::GetRequest('status', null, 'post');
