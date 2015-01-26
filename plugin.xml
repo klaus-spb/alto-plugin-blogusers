@@ -10,11 +10,11 @@
         <lang name="russian">Klaus</lang>
     </author>
     <homepage>http://altocms.com</homepage>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
     <dirname>blogusers</dirname>
     <requires>
         <alto>
-             <version>1.0.3</version>
+             <version>1.0.0</version>
         </alto>
 		<system>
             <php>5.3.0</php>
